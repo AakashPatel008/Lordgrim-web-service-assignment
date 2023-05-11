@@ -1,0 +1,199 @@
+{
+  "customers": [
+    {
+      "id": 1001,
+      "name": "John Doe",
+      "email": "john.doe@wallmart.com",
+      "address": "123 Main St, New York - 100098",
+      "contact": "+1 123-456-7890"
+    },
+    {
+      "id": 1007,
+      "name": "Test Doe",
+      "email": "11john.doe@wallmart.com",
+      "address": "111123 Main St, New York - 100098",
+      "contact": "11+1 123-456-7890"
+    },
+    {
+      "id": 1101,
+      "name": "Jane Smith",
+      "email": "jane.smith@bestbuy.com",
+      "address": "456 Elm St, Jersey City, New Jersey - 07208",
+      "contact": "+1 234-567-8901"
+    },
+    {
+      "id": 1003,
+      "name": "Michael Johnson",
+      "email": "michael.johnson@top10.com",
+      "address": "789 Oak St, Atlanta - 02103",
+      "contact": "+1 345-678-9012"
+    },
+    {
+      "id": 1004,
+      "name": "Emily Davis",
+      "email": "emily.davis@microsoft.com",
+      "address": "321 Pine St, California - 03110",
+      "contact": "+1 456-789-0123"
+    },
+    {
+      "id": 1005,
+      "name": "Robert Wilson",
+      "email": "robert.wilson@LG_tech.com",
+      "address": "654 Maple St, Newark, New Jersey - 09873",
+      "contact": "+1 567-890-1234"
+    }
+  ],
+  "orders": [
+    {
+      "id": 2001,
+      "customerId": 1001,
+      "product": "Phone-S23-Ultra",
+      "quantity": 12
+    },
+    {
+      "id": 2009994,
+      "customerId": 1007,
+      "product": "Phone-S23-Ultra",
+      "quantity": 12
+    },
+    {
+      "id": 23400,
+      "customerId": 1001,
+      "product": "Phone-S22-Ultra",
+      "quantity": 5
+    },
+    {
+      "id": 2564001,
+      "customerId": 1001,
+      "product": "Phone-Iphone14-ProMAx",
+      "quantity": 20
+    },
+    {
+      "id": 2002,
+      "customerId": 1001,
+      "product": "Laptop-Dell-XPS-gen4",
+      "quantity": 5
+    },
+    {
+      "id": 285001,
+      "customerId": 1001,
+      "product": "Headphones-Sony-WBX:500",
+      "quantity": 4
+    },
+    {
+      "id": 28001,
+      "customerId": 1001,
+      "product": "Headphones-Sony-WBX:500",
+      "quantity": 4
+    },
+
+    {
+      "id": 2003,
+      "customerId": 1101,
+      "product": "Monitor-ROG-144hz",
+      "quantity": 10
+    },
+    {
+      "id": 2009,
+      "customerId": 1101,
+      "product": "Mobile-Iphone13-Pro",
+      "quantity": 10
+    },
+    {
+      "id": 2010,
+      "customerId": 1101,
+      "product": "Laptop-Dell-XPS-gen4",
+      "quantity": 19
+    },
+    {
+      "id": 203210,
+      "customerId": 1101,
+      "product": "Monitor-ROG-144hz",
+      "quantity": 3
+    },
+    {
+      "id": 2011210,
+      "customerId": 1101,
+      "product": "Tablet-Samsung-Notebook2",
+      "quantity": 7
+    },
+    {
+      "id": 2004,
+      "customerId": 1003,
+      "product": "Tablet-Samsung-Notebook2",
+      "quantity": 5
+    },
+    {
+      "id": 20014,
+      "customerId": 1003,
+      "product": "Tablet-IPad-Mini",
+      "quantity": 10
+    },
+    {
+      "id": 22004,
+      "customerId": 1003,
+      "product": "Graphics-Nvdia-RTX4060",
+      "quantity": 6
+    },
+    {
+      "id": 20304,
+      "customerId": 1003,
+      "product": "Mouse-Razor-Basilisk2",
+      "quantity": 4
+    },
+    {
+      "id": 2005,
+      "customerId": 1004,
+      "product": "Camera-Sony-A7r3",
+      "quantity": 2
+    },
+    {
+      "id": 2856001,
+      "customerId": 1004,
+      "product": "Headphones-Sony-WBX:500",
+      "quantity": 4
+    },
+    {
+      "id": 2245004,
+      "customerId": 1004,
+      "product": "Graphics-Nvdia-RTX4060",
+      "quantity": 6
+    },
+    {
+      "id": 2006,
+      "customerId": 1004,
+      "product": "Smartwatch-Samsung-watch6",
+      "quantity": 18
+    },
+    {
+      "id": 2007,
+      "customerId": 1005,
+      "product": "Speaker-Sony-Boombox201",
+      "quantity": 10
+    },
+    {
+      "id": 20301,
+      "customerId": 1005,
+      "product": "Mobile-Oneplus-10T",
+      "quantity": 4
+    },
+    {
+      "id": 20210,
+      "customerId": 1005,
+      "product": "RAM-Kingstone-DDR5_16GB",
+      "quantity": 16
+    },
+    {
+      "id": 400211,
+      "customerId": 1005,
+      "product": "Storage-WenternDigital-Nvme_SSD_1TB",
+      "quantity": 10
+    },
+    {
+      "id": 2008,
+      "customerId": 1005,
+      "product": "Monitor-ROG-144hz",
+      "quantity": 13
+    }
+  ]
+}

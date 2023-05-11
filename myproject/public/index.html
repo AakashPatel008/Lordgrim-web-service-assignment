@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Customer and Order Management</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>LordGrim Electronics Ltd.</h1>
+
+        <!-- Display collection of customers -->
+        <h2>Customer table</h2>
+        <table id="customersTable">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Contact</th>
+            </tr>
+        </table>
+
+        <form id="customerIdForm">
+            <label for="customerId">Customer ID:</label>
+            <input type="number" id="customerId" name="customerId">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Display single customer record -->
+        <h2>Customer Details</h2>
+        <div id="customerDetails"></div>
+
+        <!-- Display collection of orders for a given customer -->
+        <h2>Customer Orders</h2>
+        <table id="customerOrdersTable">
+            <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+        </table>
+
+        <!-- Display single order record from a given customer -->
+        <h2>Order Details</h2>
+        <table id="orderDetailsTable">
+            <tr>
+                <th>Order ID</th>
+                <th>Product</th>
+                <th>Quantity</th>
+            </tr>
+        </table>
+
+        <h2>Add Customer</h2>
+        <form id="addCustomerForm">
+            <label for="addName">Name:</label>
+            <input type="text" id="addName" name="addName" required><br>
+
+            <label for="addEmail">Email:</label>
+            <input type="email" id="addEmail" name="addEmail" required><br>
+
+            <label for="addAddress">Address:</label>
+            <input type="number" id="addAddress" name="addAddress" required><br>
+
+            <label for="addContact">Contact:</label>
+            <input type="tel" id="addContact" name="addContact" required><br>
+
+            <button type="submit">Add Customer</button>
+        </form>
+
+        <footer>
+            &copy; 2023 LordGrim Electronics Ltd. All rights reserved.
+        </footer>
+
+        <script>
+            // Function to handle deleting a customer
+            const deleteCustomer = (customerId) => {
+                if (confirm('Are you sure you want to delete this customer?')) {
+                    fetch(`/customers/${customerId}`, {
+                        method: 'DELETE'
+                    })
+                        .then(response => {
+                            if (response.ok) {
+                                // Refresh the customer list
+                                fetchCustomerList();
+                                // Clear the customer details
+                                document.getElementById('customerDetails').innerHTML = '';
+                                // Clear the customer orders
+                                document.getElementById('customerOrdersTable').innerHTML = '';
+                            } else {
+                                throw new Error('Failed to delete customer');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error deleting customer:', error);
+                            // Display an error message or handle the error as needed
+                        });
+                }
+            };
+
+            function setupDeleteButton(deleteButton, customerId) {
+                deleteButton.addEventListener('click', () => {
+                    deleteCustomer(customerId);
+                });
+            }
+
+            //new add customer
+            document.getElementById('addCustomerForm').addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent form submission
+
+                // Get the input values
+                const name = document.getElementById('addName').value;
+                const email = document.getElementById('addEmail').value;
+                const address = document.getElementById('addAddress').value;
+                const contact = document.getElementById('addContact').value;
+
+                // Create a new customer object
+                const newCustomer = {
+                    name: name,
+                    email: email,
+                    address: address,
+                    contact: contact
+                };
+
+                // Send a POST request to add the new customer
+                fetch('/customers', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(newCustomer)
+                })
+                    .then(response => response.json())
+                    .then(customer => {
+                        // Refresh the customer list
+                        fetchCustomerList();
+
+                        // Clear the input fields
+                        document.getElementById('addName').value = '';
+                        document.getElementById('addEmail').value = '';
+                        document.getElementById('addAddress').value = '';
+                        document.getElementById('addContact').value = '';
+
+                        // Display a success message
+                        alert('Customer added successfully!');
+                    })
+                    .catch(error => {
+                        console.error('Error adding customer:', error);
+                        alert('Failed to add customer. Please try again.');
+                    });
+            });
+
+            // Function to fetch and display customer details based on the input form
+            const fetchCustomerDetails = (customerId) => {
+                // Fetch and display a single customer record
+                fetch(`/customers/${customerId}`)
+                    .then(response => response.json())
+                    .then(customer => {
+                        const customerDetails = document.getElementById('customerDetails');
+                        customerDetails.innerHTML = `
+                            <p>ID: ${customer.id}</p>
+                            <p>Name: ${customer.name}</p>
+                            <p>Email: ${customer.email}</p>
+                            <p>Address: ${customer.address}</p>
+                            <p>Contact: ${customer.contact}</p>
+                          `;
+                    });
+            };
+
+            const fetchCustomerOrders = (customerId) => {
+                // Fetch and display the collection of orders for a given customer
+                fetch(`/customers/${customerId}/orders`)
+                    .then(response => response.json())
+                    .then(orders => {
+                        const customerOrdersTable = document.getElementById('customerOrdersTable');
+                        customerOrdersTable.innerHTML = ''; // Clear previous table rows
+
+                        if (orders.length === 0) {
+                            customerOrdersTable.innerHTML = '<tr><td colspan="3">No orders found for customer</td></tr>';
+                        } else {
+                            // Add table rows for each order
+                            orders.forEach(order => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                <td>${order.id}</td>
+                                <td>${order.product}</td>
+                                <td>${order.quantity}</td>
+                              `;
+                                customerOrdersTable.appendChild(row);
+                            });
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching customer orders:', error);
+                        const customerOrdersTable = document.getElementById('customerOrdersTable');
+                        customerOrdersTable.innerHTML = '<tr><td colspan="3">Error fetching customer orders</td></tr>';
+                    });
+            };
+
+            const fetchOrderDetails = (orderId) => {
+                // Fetch and display a single order record
+                fetch(`/orders/${orderId}`)
+                    .then(response => response.json())
+                    .then(order => {
+                        const orderDetailsTable = document.getElementById('orderDetailsTable');
+                        orderDetailsTable.innerHTML = `
+                        <tr>
+                          <td>${order.id}</td>
+                          <td>${order.product}</td>
+                          <td>${order.quantity}</td>
+                        </tr>
+                      `;
+                    });
+            };
+
+
+            // Event listener for the input form submission
+            document.getElementById('customerIdForm').addEventListener('submit', (event) => {
+                event.preventDefault(); // Prevent form submission
+                const customerId = document.getElementById('customerId').value;
+                fetchCustomerDetails(customerId);
+                fetchCustomerOrders(customerId);
+            });
+
+            // Event listener for the order row click event
+            document.getElementById('customerOrdersTable').addEventListener('click', (event) => {
+                const target = event.target;
+                if (target.tagName === 'TD') {
+                    const orderId = target.parentNode.firstChild.textContent;
+                    fetchOrderDetails(orderId);
+                }
+            });
+
+            // Fetch and display the collection of customers
+            fetch('/customers')
+                .then(response => response.json())
+                .then(fetchedCustomers => {
+                    const customers = fetchedCustomers; // Assign the fetched customers to the variable
+
+                    const customersTable = document.getElementById('customersTable');
+
+                    customers.forEach(customer => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                <td>${customer.id}</td>
+                <td>${customer.name}</td>
+                <td>${customer.email}</td>
+                <td>${customer.address}</td>
+                <td>${customer.contact}</td>
+                <td>
+                    <button onclick="fetchCustomerDetails(${customer.id})">View</button>
+                    <button onclick="fetchCustomerOrders(${customer.id})">Orders</button>
+                    <button class="delete-button">Delete</button>
+                </td>
+            `;
+
+                        customersTable.appendChild(row);
+
+                        const deleteButton = row.querySelector('.delete-button');
+                        setupDeleteButton(deleteButton, customer.id);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching customers:', error);
+                });
+
+        </script>
+    </div>
+</body>
+</html>
