@@ -2,16 +2,16 @@
 
 This web service project provides an API for customer management. It allows you to retrieve, delete and view customer information, as well as manage their orders.
 
-## API Endpoints
-
-The following API endpoints are available:
-
 ## File Location
 
 Dockerfile: Root directory<br></br>
 database.jason: myproject/public<br></br>
 server.js: root<br></br>
 index.html: myproject/public
+
+## API Endpoints
+
+The following API endpoints are available:
 
 ### Customers
 
