@@ -29,8 +29,8 @@ Please note that `{id}` and `{customerId}` in the endpoints should be replaced w
 
 Before running the application, ensure you have the following dependencies installed:
 
-- Node.js (version X.X.X)
-- Docker (version X.X.X)
+- Node.js
+- Docker
 
 ## Getting Started
 
