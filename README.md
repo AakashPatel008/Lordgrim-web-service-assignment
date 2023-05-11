@@ -8,9 +8,9 @@ The following API endpoints are available:
 
 ## File Location
 
-Dockerfile: Root directory
-database.jason: myproject/public
-server.js: root
+Dockerfile: Root directory<br></br>
+database.jason: myproject/public<br></br>
+server.js: root<br></br>
 index.html: myproject/public
 
 ### Customers
