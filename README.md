@@ -42,7 +42,7 @@ git clone https://github.com/AakashPatel008/Lordgrim-web-service-assignment.git
 
 2. Navigate to the project directory:
 
-cd web-service-project
+cd myproject
 
 3. Install the dependencies:
 
