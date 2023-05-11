@@ -6,6 +6,13 @@ This web service project provides an API for customer management. It allows you 
 
 The following API endpoints are available:
 
+## File Location
+
+Dockerfile: Root directory
+database.jason: myproject/public
+server.js: root
+index.html: myproject/public
+
 ### Customers
 
 - `GET /customers`: Retrieves a list of all customers.
