@@ -1,6 +1,6 @@
 # Lordgrim-web-service-assignment
 
-This web service project provides an API for customer management. It allows you to create, retrieve, update, and delete customer information, as well as manage their orders.
+This web service project provides an API for customer management. It allows you to retrieve, delete and view customer information, as well as manage their orders.
 
 ## API Endpoints
 
